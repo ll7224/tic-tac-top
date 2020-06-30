@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TicTacTop</title>
+</head>
+<style>
+    #Board {
+        line-height: 0;
+    }
+
+    .cell {
+        display: inline-block;
+
+        text-align: center;
+        vertical-align: middle;
+        background-color: green;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <button id="restart">restart</button>
+    <div id="Board"></div>
+    <div>
+        <button id="random">random</button>
+        <button id="minimax">Minimax</button>
+    </div>
+    <script type="text/javascript" src="./js/Board.js"></script>
+    <script type="text/javascript" src="./js/Game.js"></script>
+    <script type="text/javascript" src="./js/Strategies.js"></script>
+    <script>
+        const game = new Game(new Board(), '#Board')
+        game.start()
+        let restart = document.getElementById('restart')
+        restart.addEventListener('click', () => {
+            game.restart()
+        })
+        const randomStrategy = new RandomStrategy()
+        let random = document.getElementById('random')
+        random.addEventListener('click', () => {
+            game.moveByStratepy(randomStrategy)
+        })
+
+        const minimaxStrategy = new MinimaxStrategy()
+        let minimax = document.getElementById('minimax')
+        minimax.addEventListener('click', () => {
+            game.moveByStratepy(minimaxStrategy)
+        })
+    </script>
+</body>
+
+</html>
